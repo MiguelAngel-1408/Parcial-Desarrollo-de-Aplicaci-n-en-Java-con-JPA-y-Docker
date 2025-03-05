@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 // Defining the class as a JPA entity to map it to a database table
 @Entity
 @Table(name = "clients")
-public class client {
+public class Client {
 
     // Primary key attribute that is mapped to the id column of the clients table
     @Id
