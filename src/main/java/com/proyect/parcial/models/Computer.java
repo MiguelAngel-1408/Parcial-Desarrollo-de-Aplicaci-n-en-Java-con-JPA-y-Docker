@@ -1,16 +1,9 @@
 package com.proyect.parcial.models;
 
+
 // Importing necessary JPA annotations for entity mapping
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+;
 
 // Defining the class as a JPA entity to map it to a database table
 @Entity
