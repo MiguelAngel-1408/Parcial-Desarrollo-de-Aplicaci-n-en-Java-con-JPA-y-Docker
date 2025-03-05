@@ -1,6 +1,7 @@
 package com.proyect.parcial.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class ComputerService {
 
     public Computer saveComputer(Computer computer){
         return computerRepository.save(computer);
+    }
+
+    public Optional<Computer> getComputerById(Long id){
+        return computerRepository.findById(id);
     }
 
     public Computer updateById(Computer computer,long id){
