@@ -33,6 +33,11 @@ public class StoreController {
         return storeService.saveStore(store);
     }
 
+    @GetMapping(path = "/{id}")
+    public Optional<Store> getStoreById(@PathVariable("id") Long id){
+        return storeService.getStoreById(id);
+    }
+
     @PutMapping(path = "/{id}")
     public Store updateById(@RequestBody Store store,@PathVariable("id") Long id){
         return storeService.updateById(store,id);
