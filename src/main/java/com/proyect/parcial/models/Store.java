@@ -40,12 +40,12 @@ public class Store {
     }
 
     // Returns the store's name
-    public String getNombre() {
+    public String getName() {
         return name;
     }
 
     // Returns the list of computers in the store
-    public List<Computer> getComputadoras() {
+    public List<Computer> getComputers() {
         return computers;
     }
 
@@ -55,12 +55,12 @@ public class Store {
     }
 
     // Sets the store's name
-    public void setNombre(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     // Sets the list of computers in the store
-    public void setComputadoras(List<Computer> computers) {
+    public void setComputers(List<Computer> computers) {
         this.computers = computers;
     }
 
