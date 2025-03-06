@@ -10,6 +10,9 @@ import jakarta.persistence.*;
 @Table(name = "specifications")
 public class Specification {
 
+    public Specification(){
+    }
+
     // Primary key attribute that is mapped to the id column of the specifications table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each specification
@@ -21,7 +24,7 @@ public class Specification {
 
     // One specification belongs to one computer
     @OneToOne
-    @JoinColumn(name = "computer_id", nullable = true)
+    @JoinColumn(name = "computer_id", nullable = false)
     private Computer computer;
 
     // Getters and Setters for accessing and modifying the attributes of the Specification class

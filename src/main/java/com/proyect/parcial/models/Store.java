@@ -13,6 +13,8 @@ import jakarta.persistence.*;
 @Table(name = "stores")
 public class Store {
 
+    public  Store(){
+    }
     // Primary key attribute that is mapped to the id column of the stores table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each store

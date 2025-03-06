@@ -12,6 +12,9 @@ import jakarta.persistence.*;
 @Table(name = "brands")
 public class Brand {
 
+    public Brand() {
+    }
+
     // Primary key attribute that is mapped to the id column of the brands table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each brand
@@ -22,11 +25,9 @@ public class Brand {
     private String name;
 
     // One brand can have multiple computers
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private List<Computer> computers = new ArrayList<>();
 
-    public Brand() {
-    }
     
     // Getters and Setters for accessing and modifying the attributes of the Brand class
 

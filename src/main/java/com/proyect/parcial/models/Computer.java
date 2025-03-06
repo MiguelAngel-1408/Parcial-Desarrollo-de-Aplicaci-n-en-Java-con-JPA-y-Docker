@@ -10,6 +10,9 @@ import jakarta.persistence.*;
 @Table(name = "computers")
 public class Computer {
 
+    public Computer(){
+    }
+
 
     // Primary key attribute that is mapped to the id column of the computers table
     @Id
@@ -23,7 +26,7 @@ public class Computer {
 
     // Many computers can belong to one store
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)  // Joining the store_id column in the computers table with the id column in the stores table
+    @JoinColumn(name = "store_id", nullable = true)  // Joining the store_id column in the computers table with the id column in the stores table
     private Store store;
 
     // Many computers can belong to one brand

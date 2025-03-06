@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.proyect.parcial.models.Brand;
 
-public interface IBrandRepostory extends JpaRepository<Brand, Long> {
+public interface IBrandRepository extends JpaRepository<Brand, Long> {
 
     
 } 

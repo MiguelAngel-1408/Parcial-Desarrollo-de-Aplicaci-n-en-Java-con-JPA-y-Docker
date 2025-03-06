@@ -13,6 +13,9 @@ import jakarta.persistence.*;
 @Table(name = "clients")
 public class Client {
 
+    public  Client(){
+    }
+
     // Primary key attribute that is mapped to the id column of the clients table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each client
