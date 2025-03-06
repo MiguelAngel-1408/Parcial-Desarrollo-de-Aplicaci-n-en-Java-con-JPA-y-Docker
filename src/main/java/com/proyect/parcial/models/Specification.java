@@ -21,7 +21,7 @@ public class Specification {
 
     // One specification belongs to one computer
     @OneToOne
-    @JoinColumn(name = "computer_id", nullable = false)
+    @JoinColumn(name = "computer_id", nullable = true)
     private Computer computer;
 
     // Getters and Setters for accessing and modifying the attributes of the Specification class

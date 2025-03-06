@@ -1,5 +1,6 @@
 package com.proyect.parcial.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,8 +22,11 @@ public class Brand {
     private String name;
 
     // One brand can have multiple computers
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Computer> computers;
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<Computer> computers = new ArrayList<>();
+
+    public Brand() {
+    }
     
     // Getters and Setters for accessing and modifying the attributes of the Brand class
 
