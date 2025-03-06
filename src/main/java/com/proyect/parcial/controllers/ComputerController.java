@@ -30,7 +30,7 @@ public class ComputerController {
 
     @PostMapping
     public Computer saveComputer(@RequestBody Computer computer){
-        return this.computerService.saveComputer(computer);
+        return computerService.saveComputer(computer);
     }
 
 

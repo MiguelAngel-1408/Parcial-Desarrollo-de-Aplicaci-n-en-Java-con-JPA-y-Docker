@@ -2,6 +2,7 @@ package com.proyect.parcial.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 // Importing necessary JPA annotations for entity mapping
 import jakarta.persistence.*;
@@ -26,7 +27,8 @@ public class Store {
     private String name;
 
     // One store can have multiple computers
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true) 
+    @JsonIgnoreProperties("store")
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL) 
     private List<Computer> computers;
 
     // Getters and Setters for accessing and modifying the attributes of the Store class

@@ -2,8 +2,10 @@ package com.proyect.parcial.models;
 
 
 // Importing necessary JPA annotations for entity mapping
+
 import jakarta.persistence.*;
 ;
+
 
 // Defining the class as a JPA entity to map it to a database table
 @Entity
