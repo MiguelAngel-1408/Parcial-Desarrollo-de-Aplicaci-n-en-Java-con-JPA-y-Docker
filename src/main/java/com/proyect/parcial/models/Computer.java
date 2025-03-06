@@ -18,26 +18,34 @@ import jakarta.persistence.*;
 @Table(name = "computers")
 public class Computer {
 
+    // Primary key attribute that is mapped to the id column of the computers table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // Column annotation to specify the name of the column in the database table
     @Column(nullable = false, length = 100)
     private String model;
 
+    // Many computers can have one brand
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
+    // Many computers can belong to one store
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)
+    // Ignoring the store attribute to avoid infinite recursion
     @JsonBackReference("store-computer")
     private Store store;
 
+    // One computer can have one specification
     @OneToOne(mappedBy = "computer", cascade = CascadeType.ALL, orphanRemoval = true)
+    // Ignoring the specification attribute to avoid infinite recursion
     @JsonManagedReference("computer-specification")
     private Specification specification;
 
+    // Many computers can belong to many clients
     @ManyToMany(mappedBy = "computers")
     private List<Client> clients = new ArrayList<>();
 
