@@ -1,8 +1,10 @@
 package com.proyect.parcial.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 // Importing necessary JPA annotations for entity mapping
 import jakarta.persistence.*;
@@ -14,22 +16,22 @@ import jakarta.persistence.*;
 @Table(name = "stores")
 public class Store {
 
-    public  Store(){
-    }
     // Primary key attribute that is mapped to the id column of the stores table
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each store
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     // Column annotation to specify the name of the column in the database table
-    @Column(nullable = false, length = 100) // Name of the store cannot be null and has a maximum length of 100 characters
+    @Column(nullable = false, length = 100)
     private String name;
 
-    // One store can have multiple computers
-    @JsonIgnoreProperties("store")
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL) 
-    private List<Computer> computers;
+    // One store can have many computers
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    // Ignoring the computers attribute to avoid infinite recursion
+    @JsonIgnore
+    private List<Computer> computers = new ArrayList<>();
+
+    public Store() {}
 
     // Getters and Setters for accessing and modifying the attributes of the Store class
 

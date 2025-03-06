@@ -3,6 +3,8 @@ package com.proyect.parcial.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 // Importing necessary JPA annotations for entity mapping
 import jakarta.persistence.*;
@@ -12,22 +14,21 @@ import jakarta.persistence.*;
 @Table(name = "brands")
 public class Brand {
 
-    public Brand() {
-    }
-
     // Primary key attribute that is mapped to the id column of the brands table
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each brand
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     // Column annotation to specify the name of the column in the database table
-    @Column(nullable = false, length = 100) // Name of the brand cannot be null and has a maximum length of 100 characters
+    @Column(nullable = false, length = 100)
     private String name;
 
-    // One brand can have multiple computers
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    // One brand can have many computers
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Computer> computers = new ArrayList<>();
 
+    public Brand() {}
     
     // Getters and Setters for accessing and modifying the attributes of the Brand class
 

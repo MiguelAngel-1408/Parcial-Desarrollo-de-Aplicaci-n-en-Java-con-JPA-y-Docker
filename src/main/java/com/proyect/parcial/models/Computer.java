@@ -1,6 +1,12 @@
 package com.proyect.parcial.models;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 // Importing necessary JPA annotations for entity mapping
 
 import jakarta.persistence.*;
@@ -12,35 +18,31 @@ import jakarta.persistence.*;
 @Table(name = "computers")
 public class Computer {
 
-    public Computer(){
-    }
-
-
-    // Primary key attribute that is mapped to the id column of the computers table
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs for each computer
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-    // Column annotation to specify the name of the column in the database table
-    @Column(nullable = false, length = 100) // Model of the computer cannot be null and has a maximum length of 100 characters
+    @Column(nullable = false, length = 100)
     private String model;
 
-    // Many computers can belong to one store
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = true)  // Joining the store_id column in the computers table with the id column in the stores table
-    private Store store;
-
-    // Many computers can belong to one brand
-    @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false) // Joining the brand_id column in the computers table with the id column in the brands table
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
+    @ManyToOne
+    @JoinColumn(name = "store_id", nullable = false)
+    @JsonBackReference("store-computer")
+    private Store store;
 
-    // One computer has one specification
-    @OneToOne(mappedBy = "computer", cascade = CascadeType.ALL, orphanRemoval = true) // One-to-one mapping between the computer and specification tables
+    @OneToOne(mappedBy = "computer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("computer-specification")
     private Specification specification;
 
+    @ManyToMany(mappedBy = "computers")
+    private List<Client> clients = new ArrayList<>();
+
+    public Computer() {}
+     
     // Getters and Setters for accessing and modifying the attributes of the Computer class
     
     // Returns the computer's ID

@@ -1,6 +1,8 @@
 package com.proyect.parcial.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 // Importing necessary JPA annotations for entity mapping
 import jakarta.persistence.*;
 
@@ -10,8 +12,6 @@ import jakarta.persistence.*;
 @Table(name = "specifications")
 public class Specification {
 
-    public Specification(){
-    }
 
     // Primary key attribute that is mapped to the id column of the specifications table
     @Id
@@ -19,13 +19,19 @@ public class Specification {
     private Long id;
 
     // Column annotation to specify the name of the column in the database table
-    @Column(nullable = false, length = 200) // Details of the specification cannot be null and has a maximum length of 200 characters
+    @Column(nullable = false, length = 200)
     private String details;
 
-    // One specification belongs to one computer
+    // One computer can have one specification
     @OneToOne
-    @JoinColumn(name = "computer_id", nullable = true)
+    // Joining the computer_id column of the specifications table with the id column of the computers table
+    @JoinColumn(name = "computer_id", nullable = false)
+    // Ignoring the computer attribute to avoid infinite recursion
+    @JsonBackReference("computer-specification")
     private Computer computer;
+
+    // Default constructor
+    public Specification() {}
 
     // Getters and Setters for accessing and modifying the attributes of the Specification class
 
